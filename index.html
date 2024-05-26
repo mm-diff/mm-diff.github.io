@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="MM-Diff: High-Fidelity Image Personalization via Multi-Modal Condition Integration">
+  <meta name="keywords" content="Image Personalization, Subject Fidelity, Multi-Subject Generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MM-Diff: High-Fidelity Image Personalization via Multi-Modal Condition Integration</title>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K400ZZHPF1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-K400ZZHPF1');
+</script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">MM-Diff: High-Fidelity Image Personalization via Multi-Modal Condition Integration</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Zhichao Wei, Qingkun Su, Long Qin, Weizhi Wang
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Alibaba Group
+            </span>
+          </div>
+
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2403.15059"
+                   target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> 
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+              <!-- BibTex. -->
+              <span class="link-block">
+                <a href="static/txts/bibtex.txt"
+                   target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-book"></i>
+                  </span>
+                  <span>BibTex</span>
+                  </a>
+              </span>
+             
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max">
+    <div class="container is-max-desktop is-centered has-text-centered">
+      <h2 class="subtitle">
+        <b>TL;DR </b>  We propose MM-Diff, a unified and tuning-free image personalization framework capable of generating high-fidelity images of both single and multiple subjects in seconds. </h2><br>
+        <span class="tag is-medium is-rounded is-light is-success">
+          <span class="icon">
+            <i class="fas fa-paw"></i>
+          </span>
+          <span> Multi-Domain</span>
+        </span>
+        <span class="tag is-medium is-rounded is-light is-info">
+          <span class="icon"><i class="fas fa-fast-forward"></i></span>
+          <span> Tuning-Free</span>
+        </span>
+        <span class="tag is-medium is-rounded is-light is-warning">
+          <span class="icon">
+            <i class="fas fa-dice-one"></i>
+          </span>
+          <span> Multi-Subject</span>
+        </span>
+        
+      </div>
+    <br>
+    <div class="hero-body">
+      <!-- <div id="results-carousel" class="carousel results-carousel"> -->
+      <div class="container">
+      <div class="item">
+      <div class="column is-centered has-text-centered">
+        <img src="static/figs/teaser.png" alt="Teaser." width=90%/>
+	  </div>
+    </div>
+  </div>
+ <!--  </div> -->
+  </div>
+  </div>
+ <!--  </div> -->
+</section>
+
+<section class="section hero is-light">
+  <div class="container is-max">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <!-- div class="item">
+          <p style="margin-bottom: 30px">
+        <video poster="" id="tree" autoplay controls muted loop height="100%">
+          <source src="static/figures/video.mp4"
+          type="video/mp4">
+        </video>
+        </p>
+        </div -->
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+        <p>
+          Recent advances in tuning-free personalized image generation based on diffusion models are impressive. However, to improve subject fidelity, existing methods either retrain the diffusion model or infuse it with dense visual embeddings, both of which suffer from poor generalization and efficiency. Also, these methods falter in multi-subject image generation due to the unconstrained cross-attention mechanism. In this paper, we propose MM-Diff, a unified and tuning-free image personalization framework capable of generating high-fidelity images of both single and multiple subjects in seconds. Specifically, to simultaneously enhance text consistency and subject fidelity, MM-Diff employs a vision encoder to transform the input image into CLS and patch embeddings. CLS embeddings are used on the one hand to augment the text embeddings, and on the other hand together with patch embeddings to derive a small number of detail-rich subject embeddings, both of which are efficiently integrated into the diffusion model through the well-designed multimodal cross-attention mechanism. Additionally, MM-Diff introduces cross-attention map constraints during the training phase, ensuring flexible multi-subject image sampling during inference without any predefined inputs (e.g., layout). Extensive experiments demonstrate the superior performance of MM-Diff over other leading methods.
+        </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max">
+    <!-- Method. -->
+    <div class="rows is-centered has-text-centered">
+      <!-- Overview -->
+      <div class="row is-max">
+        <h2 class="title is-3">How does it work?</h2>
+        <div class="row is-centered has-text-centered is-four-fifths">
+          <img id="architecture" src="static/figs/pipeline.png"/>
+        </div>
+        <div class="columns is-centered has-text-centered">
+          <div class="column content has-text-justified is-four-fifths">
+            <p>
+              The overall pipeline of the proposed MM-Diff. On the left, the vision-augmented 
+              text embeddings and a small set of detail-rich subject embeddings are injected into the 
+              diffusion model through the well-designed multi-modal cross-attention. On the right, we 
+              illustrate the details of the innovative implementation of cross-attention with LoRAs, 
+              as well as the attention constraints that facilitate multi-subject generation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section hero is-light">
+  <div class="container is-widescreen">
+    <!-- Comparisions. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Comparisons to Existing Work</h2>
+        <div class="content has-text-justified">
+        </div>
+        <div class="column is-centered has-text-centered is-widescreen">
+        <img id="face_comps" src="static/figs/comp_single.png"/>
+      </div>
+        <div class="content has-text-centered">
+          <p>
+            Visual comparisions on single subject generalization.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <hr style="background-color: white;">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+        </div>
+        <div class="column is-centered has-text-centered is-widescreen">
+        <img id="face_comps" src="static/figs/comp_portrait.png"/>
+      </div>
+        <div class="content has-text-centered">
+          <p>
+            Visual comparisions on portrait generation.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <hr style="background-color: white;">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+        </div>
+        <div class="column is-centered has-text-centered is-widescreen">
+        <img id="face_comps" src="static/figs/comp_multi.png" width=70%/>
+      </div>
+        <div class="content has-text-centered">
+          <p>
+            Visual comparisions on multi-subject generation.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-widescreen">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Additional Resutls</h2>
+        <div class="content has-text-justified">
+        </div>
+        <div class="column is-centered has-text-centered is-widescreen">
+        <img id="face_comps" src="static/figs/additional_results_single.png"/>
+      </div>
+        <div class="content has-text-centered">
+          <p>
+            Additional visualization results of portrait generation. 
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+        </div>
+        <div class="column is-centered has-text-centered is-widescreen">
+        <img id="face_comps" src="static/figs/additional_results_multi.png"/>
+      </div>
+        <div class="content has-text-centered">
+          <p>
+            Additional visualization results of multi-subject generation. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<!--<section class="section" id="BibTeX">-->
+<!--  <div class="container is-max-desktop content">-->
+<!--    <h2 class="title">BibTeX</h2>-->
+<!--    <p>If you find our work useful, please cite our paper:</p>-->
+<!--    <pre><code>Coming soon-->
+<!--}</code></pre>-->
+<!--  </div>-->
+<!--</section>-->
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            For further questions and suggestions about our work, please contact us at <a href="weizhichao.wzc@alibaba-inc.com">weizhichao.wzc@alibaba-inc.com</a>.
+          </p>
+          <p>
+            The template of this webpage is borrowed from <a href="https://datencoder.github.io/"> DAT-Encoder</a>. If you want to reuse their code, please credit them appropriately.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

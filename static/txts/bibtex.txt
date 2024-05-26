@@ -1,0 +1,6 @@
+@article{wei2024mm,
+  title={MM-Diff: High-Fidelity Image Personalization via Multi-Modal Condition Integration},
+  author={Wei, Zhichao and Su, Qingkun and Qin, Long and Wang, Weizhi},
+  journal={arXiv preprint arXiv:2403.15059},
+  year={2024}
+}
